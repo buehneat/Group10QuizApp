@@ -11,6 +11,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -47,13 +52,22 @@
                                     <constraint firstAttribute="width" secondItem="a8s-JS-pKs" secondAttribute="height" multiplier="169:171" id="snl-Je-Hky"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Pals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-Ed-uQc">
+                                <rect key="frame" x="16" y="502" width="343" height="47"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="14x-Xg-hZe"/>
                             <constraint firstItem="6bU-b4-Rgv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="145" id="6bD-H8-7k4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aJx-Ed-uQc" secondAttribute="trailing" constant="16" id="7EG-Qe-yrb"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="trailing" secondItem="0gW-O4-jlA" secondAttribute="trailing" id="FOM-5t-gtJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aJx-Ed-uQc" secondAttribute="bottom" constant="118" id="HtW-dQ-8fP"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="bottom" secondItem="8Mf-3g-Cet" secondAttribute="bottom" id="IYU-9d-rKX"/>
+                            <constraint firstItem="aJx-Ed-uQc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Owj-4B-pDg"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="leading" secondItem="8Mf-3g-Cet" secondAttribute="trailing" constant="5" id="Rke-YE-Trn"/>
                             <constraint firstItem="0gW-O4-jlA" firstAttribute="top" secondItem="8Mf-3g-Cet" secondAttribute="bottom" constant="18" id="ep6-Xb-8xK"/>
                             <constraint firstItem="8Mf-3g-Cet" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fhs-ur-XGv"/>
@@ -65,6 +79,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="startQuizButton" destination="6bU-b4-Rgv" id="Utu-oM-aYQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
