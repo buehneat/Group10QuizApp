@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FTK-bh-t4E">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,35 +25,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0gW-O4-jlA">
-                                <rect key="frame" x="16" y="250" width="343" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="EAa-gI-7z1"/>
-                                </constraints>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0gW-O4-jlA">
+                                <rect key="frame" x="16" y="386" width="343" height="29"/>
                                 <segments>
                                     <segment title="Alone"/>
                                     <segment title="With Pals"/>
                                 </segments>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-b4-Rgv">
-                                <rect key="frame" x="145" y="318.5" width="84" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-b4-Rgv">
+                                <rect key="frame" x="153" y="422" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Start Quiz"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Alone" translatesAutoresizingMaskIntoConstraints="NO" id="8Mf-3g-Cet">
-                                <rect key="frame" x="16" y="61" width="169" height="171"/>
+                                <rect key="frame" x="16" y="198" width="169" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8Mf-3g-Cet" secondAttribute="height" multiplier="169:171" id="g9U-tU-kiH"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="With Pals" translatesAutoresizingMaskIntoConstraints="NO" id="a8s-JS-pKs">
-                                <rect key="frame" x="190" y="61" width="169" height="171"/>
+                                <rect key="frame" x="190" y="198" width="169" height="171"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="a8s-JS-pKs" secondAttribute="height" multiplier="169:171" id="snl-Je-Hky"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Pals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-Ed-uQc">
-                                <rect key="frame" x="16" y="502" width="343" height="47"/>
+                                <rect key="frame" x="16" y="105" width="343" height="47"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,30 +60,45 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="14x-Xg-hZe"/>
-                            <constraint firstItem="6bU-b4-Rgv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="145" id="6bD-H8-7k4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aJx-Ed-uQc" secondAttribute="trailing" constant="16" id="7EG-Qe-yrb"/>
-                            <constraint firstItem="a8s-JS-pKs" firstAttribute="trailing" secondItem="0gW-O4-jlA" secondAttribute="trailing" id="FOM-5t-gtJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aJx-Ed-uQc" secondAttribute="bottom" constant="118" id="HtW-dQ-8fP"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="bottom" secondItem="8Mf-3g-Cet" secondAttribute="bottom" id="IYU-9d-rKX"/>
+                            <constraint firstItem="8Mf-3g-Cet" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="134" id="JDi-gs-fae"/>
                             <constraint firstItem="aJx-Ed-uQc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Owj-4B-pDg"/>
+                            <constraint firstItem="8Mf-3g-Cet" firstAttribute="leading" secondItem="0gW-O4-jlA" secondAttribute="leading" id="Qre-Ba-RF9"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="leading" secondItem="8Mf-3g-Cet" secondAttribute="trailing" constant="5" id="Rke-YE-Trn"/>
-                            <constraint firstItem="0gW-O4-jlA" firstAttribute="top" secondItem="8Mf-3g-Cet" secondAttribute="bottom" constant="18" id="ep6-Xb-8xK"/>
+                            <constraint firstItem="aJx-Ed-uQc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="c4p-If-Pof"/>
                             <constraint firstItem="8Mf-3g-Cet" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fhs-ur-XGv"/>
-                            <constraint firstItem="8Mf-3g-Cet" firstAttribute="leading" secondItem="0gW-O4-jlA" secondAttribute="leading" id="gXR-jD-VcD"/>
                             <constraint firstItem="a8s-JS-pKs" firstAttribute="top" secondItem="8Mf-3g-Cet" secondAttribute="top" id="gbQ-bB-SYY"/>
-                            <constraint firstItem="8Mf-3g-Cet" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="hte-Kn-nCK"/>
-                            <constraint firstItem="6bU-b4-Rgv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iq2-C7-at8"/>
-                            <constraint firstItem="6bU-b4-Rgv" firstAttribute="centerX" secondItem="0gW-O4-jlA" secondAttribute="centerX" id="kAe-Sn-sNo"/>
+                            <constraint firstItem="0gW-O4-jlA" firstAttribute="top" secondItem="8Mf-3g-Cet" secondAttribute="bottom" constant="17" id="sIY-aE-Ygf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="n1R-sa-2bC"/>
                     <connections>
                         <outlet property="startQuizButton" destination="6bU-b4-Rgv" id="Utu-oM-aYQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="476" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wjh-q1-fTg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FTK-bh-t4E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T5X-gO-Rcf">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="f42-Hn-kRU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Isg-mT-POm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-476" y="134"/>
         </scene>
     </scenes>
     <resources>
