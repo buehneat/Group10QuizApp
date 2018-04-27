@@ -201,16 +201,52 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="nDL-lC-7pG">
+                                <rect key="frame" x="207.5" y="424" width="137.5" height="78"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ent-Xw-Hgf">
+                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-SL-l0c">
+                                        <rect key="frame" x="32" y="54" width="73.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9l-mV-Siv">
+                                <rect key="frame" x="195" y="584" width="150" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fiy-Rk-0ta"/>
+                                    <constraint firstAttribute="width" constant="150" id="gGe-Jn-qlM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="connect:" destination="qiQ-q0-kkX" eventType="touchUpInside" id="amG-PO-FFr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nDL-lC-7pG" firstAttribute="top" secondItem="fc1-Ol-6RQ" secondAttribute="bottom" constant="50" id="3UJ-qR-Al4"/>
                             <constraint firstItem="u6z-ff-XMk" firstAttribute="top" secondItem="Xcn-ga-lHb" secondAttribute="top" constant="80" id="6U3-gI-aNc"/>
+                            <constraint firstItem="Xcn-ga-lHb" firstAttribute="trailing" secondItem="nDL-lC-7pG" secondAttribute="trailing" constant="30" id="8DR-5B-2JG"/>
+                            <constraint firstItem="s9l-mV-Siv" firstAttribute="top" secondItem="nDL-lC-7pG" secondAttribute="bottom" constant="82" id="AYx-6B-g6d"/>
                             <constraint firstItem="u6z-ff-XMk" firstAttribute="centerX" secondItem="p7f-1V-8Sc" secondAttribute="centerX" id="ELk-rK-L0o"/>
                             <constraint firstItem="atL-Zm-8l3" firstAttribute="leading" secondItem="Xcn-ga-lHb" secondAttribute="leading" constant="17" id="Hj0-Fp-iNc"/>
                             <constraint firstItem="fc1-Ol-6RQ" firstAttribute="top" secondItem="oMj-K1-Akb" secondAttribute="bottom" constant="30" id="Kp4-Po-yCl"/>
                             <constraint firstItem="fc1-Ol-6RQ" firstAttribute="centerX" secondItem="p7f-1V-8Sc" secondAttribute="centerX" id="PEY-Ev-dVO"/>
                             <constraint firstItem="oMj-K1-Akb" firstAttribute="top" secondItem="u6z-ff-XMk" secondAttribute="bottom" constant="30" id="Pbd-iw-pMf"/>
                             <constraint firstItem="Xcn-ga-lHb" firstAttribute="trailing" secondItem="fc1-Ol-6RQ" secondAttribute="trailing" id="W2W-tx-GnD"/>
+                            <constraint firstItem="Xcn-ga-lHb" firstAttribute="trailing" secondItem="s9l-mV-Siv" secondAttribute="trailing" constant="30" id="hTI-Vh-7w1"/>
                             <constraint firstItem="atL-Zm-8l3" firstAttribute="top" secondItem="fc1-Ol-6RQ" secondAttribute="bottom" constant="50" id="sRT-wA-hHt"/>
                             <constraint firstItem="oMj-K1-Akb" firstAttribute="centerX" secondItem="p7f-1V-8Sc" secondAttribute="centerX" id="uhC-o2-i5W"/>
                             <constraint firstItem="fc1-Ol-6RQ" firstAttribute="leading" secondItem="Xcn-ga-lHb" secondAttribute="leading" id="yVE-7s-DyP"/>
