@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class BuehneWork {
-    
+    public static var questionCount = 1;
 }
