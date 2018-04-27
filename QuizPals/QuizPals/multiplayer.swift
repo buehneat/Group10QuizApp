@@ -11,11 +11,16 @@ import CoreMotion
 import MultipeerConnectivity
 
 class multiplayer: UIViewController {
-
+    
+    var session: MCSession!
+    var peerID: MCPeerID!
+    
+    var browser: MCBrowserViewController!
+    var assistant: MCAdvertiserAssistant!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
