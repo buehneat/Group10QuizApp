@@ -54,6 +54,9 @@
                                 <rect key="frame" x="153" y="455" width="69" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Start Quiz"/>
+                                <connections>
+                                    <action selector="Start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CM9-a3-Kzg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,6 +80,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="n1R-sa-2bC"/>
                     <connections>
+                        <outlet property="gameType" destination="0gW-O4-jlA" id="CpL-jz-nLh"/>
                         <outlet property="startQuizButton" destination="6bU-b4-Rgv" id="Utu-oM-aYQ"/>
                     </connections>
                 </viewController>
@@ -87,7 +91,7 @@
         <!--Multiplayer-->
         <scene sceneID="Z4A-8d-t0O">
             <objects>
-                <viewController id="qiQ-q0-kkX" customClass="multiplayer" customModule="QuizPals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="multi" id="qiQ-q0-kkX" customClass="multiplayer" customModule="QuizPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7f-1V-8Sc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,17 +106,26 @@
         <!--Single Player-->
         <scene sceneID="gxU-NA-xoQ">
             <objects>
-                <viewController id="j0M-1x-VdV" customClass="singlePlayer" customModule="QuizPals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="single" id="j0M-1x-VdV" customClass="singlePlayer" customModule="QuizPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zsn-2W-hyj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFi-sQ-nVZ">
+                                <rect key="frame" x="149" y="323" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="4hy-8d-3jc"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDk-TR-eSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="138"/>
+            <point key="canvasLocation" x="1319.2" y="137.18140929535232"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wjh-q1-fTg">

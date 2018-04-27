@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var startQuizButton: UIButton!
+    @IBOutlet weak var gameType: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,18 @@ class ViewController: UIViewController {
     @objc func connectPeers() {
         
     }
+    
+    @IBAction func Start(_ sender: Any) {
+        if gameType.selectedSegmentIndex == 0 {
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "single")
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+        else {
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "multi")
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+    }
+    
 
 
 }
