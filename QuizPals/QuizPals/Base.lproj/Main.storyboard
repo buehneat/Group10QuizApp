@@ -198,6 +198,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendChoice:" destination="qiQ-q0-kkX" eventType="touchUpInside" id="QW9-CZ-jDA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
