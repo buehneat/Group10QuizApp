@@ -35,6 +35,15 @@ class singlePlayer: UIViewController {
                 numQuestions = json["numberOfQuestions"] as! Int
                 questions = json["questions"] as! [[String : Any]]
                 self.navigationItem.title = json["topic"] as! String
+                let question = questions[BuehneWork.questionCount]
+                let questionSentence = question["questionSentence"]
+                self.questionLabel.text = questionSentence as! String
+                let options = question["options"] as! [String:String]
+                self.answerA.text = "A)" + options["A"]!
+                self.answerB.text = "B)" + options["B"]!
+                self.answerC.text = "C)" + options["C"]!
+                self.answerD.text = "D)" + options["D"]!
+                self.testLabel.text = "Question " + String(BuehneWork.questionCount) + "/" + String(numQuestions)
             }
             catch _{
                 print("Failed")
