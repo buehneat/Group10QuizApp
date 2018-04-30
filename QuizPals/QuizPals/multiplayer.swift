@@ -14,9 +14,25 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 
     var session: MCSession!
     var peerID: MCPeerID!
-    
     var browser: MCBrowserViewController!
     var assistant: MCAdvertiserAssistant!
+    
+    @IBOutlet weak var Btn_A: UIButton!
+    @IBOutlet weak var Btn_B: UIButton!
+    @IBOutlet weak var Btn_C: UIButton!
+    @IBOutlet weak var Btn_D: UIButton!
+    @IBOutlet weak var Btn_Send: UIButton!
+    @IBOutlet weak var Btn_Connect: UIButton!
+    //TODO: Populate this with questions
+    @IBOutlet weak var Lb_Question: UILabel!
+    // This with current score
+    @IBOutlet weak var Lb_Score: UILabel!
+    // Labels to show answer choices
+    @IBOutlet weak var Lb_Player: UILabel!
+    @IBOutlet weak var Lb_LeftPlayer: UILabel!
+    @IBOutlet weak var Lb_RightPlayer: UILabel!
+    @IBOutlet weak var Lb_TopPlayer: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
