@@ -15,6 +15,7 @@ class singlePlayer: UIViewController {
     @IBOutlet weak var answerB: UIButton!
     @IBOutlet weak var answerC: UIButton!
     @IBOutlet weak var answerD: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!

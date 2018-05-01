@@ -371,6 +371,12 @@
                                     <action selector="clickedD:" destination="j0M-1x-VdV" eventType="touchUpInside" id="0lh-vM-WxF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4e-bk-9iv">
+                                <rect key="frame" x="338.5" y="34" width="20.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -378,6 +384,7 @@
                             <constraint firstItem="CMB-rT-0Ne" firstAttribute="leading" secondItem="edJ-Bh-oyZ" secondAttribute="leading" id="4yI-Q0-Gpn"/>
                             <constraint firstItem="A8E-aH-eWH" firstAttribute="trailing" secondItem="Cx2-cv-4C0" secondAttribute="trailing" id="Aea-L3-VW4"/>
                             <constraint firstItem="CMB-rT-0Ne" firstAttribute="trailing" secondItem="edJ-Bh-oyZ" secondAttribute="trailing" id="Cp6-aD-Myv"/>
+                            <constraint firstItem="4hy-8d-3jc" firstAttribute="trailing" secondItem="k4e-bk-9iv" secondAttribute="trailing" constant="16" id="D4o-xd-rpX"/>
                             <constraint firstItem="Cx2-cv-4C0" firstAttribute="trailing" secondItem="HFi-sQ-nVZ" secondAttribute="trailing" id="DZb-8L-hXJ"/>
                             <constraint firstItem="Cx2-cv-4C0" firstAttribute="leading" secondItem="HFi-sQ-nVZ" secondAttribute="leading" id="ING-eT-aqo"/>
                             <constraint firstItem="iks-DL-ae8" firstAttribute="top" secondItem="Cx2-cv-4C0" secondAttribute="bottom" constant="8" symbolic="YES" id="TRc-OI-EUM"/>
@@ -398,6 +405,7 @@
                             <constraint firstItem="A8E-aH-eWH" firstAttribute="width" secondItem="iks-DL-ae8" secondAttribute="width" id="qUn-kE-8gp"/>
                             <constraint firstItem="A8E-aH-eWH" firstAttribute="leading" secondItem="HJd-F1-HYl" secondAttribute="leading" id="qXt-EH-eYv"/>
                             <constraint firstItem="bL9-jS-Gtg" firstAttribute="height" secondItem="iks-DL-ae8" secondAttribute="height" id="sqL-qo-jns"/>
+                            <constraint firstItem="k4e-bk-9iv" firstAttribute="top" secondItem="4hy-8d-3jc" secondAttribute="top" constant="14" id="tot-A4-2Ya"/>
                             <constraint firstItem="HJd-F1-HYl" firstAttribute="height" secondItem="iks-DL-ae8" secondAttribute="height" id="up8-np-206"/>
                             <constraint firstItem="HFi-sQ-nVZ" firstAttribute="top" secondItem="4hy-8d-3jc" secondAttribute="top" constant="44" id="voD-tY-3oa"/>
                         </constraints>
@@ -412,6 +420,7 @@
                         <outlet property="restartButton" destination="CMB-rT-0Ne" id="2IZ-OQ-ZXI"/>
                         <outlet property="scoreLabel" destination="edJ-Bh-oyZ" id="WSe-x4-Eke"/>
                         <outlet property="testLabel" destination="HFi-sQ-nVZ" id="o1j-hv-EVW"/>
+                        <outlet property="timeLabel" destination="k4e-bk-9iv" id="Sme-BU-DRn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDk-TR-eSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
