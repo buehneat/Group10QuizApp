@@ -11,4 +11,6 @@ import Foundation
 
 class BuehneWork {
     public static var questionCount = 1;
+    public static var score = 0;
+    public static var quiz = 0;
 }

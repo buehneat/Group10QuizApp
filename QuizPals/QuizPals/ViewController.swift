@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         startQuizButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         
         navigationItem.rightBarButtonItem?.title = "Connect";
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "HighScores", style: .plain, target: self, action: #selector(connectPeers))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Connect", style: .plain, target: self, action: #selector(connectPeers))
     }
 
     override func didReceiveMemoryWarning() {
