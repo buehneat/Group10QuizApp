@@ -16,12 +16,24 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     var peerID: MCPeerID!
     var browser: MCBrowserViewController!
     var assistant: MCAdvertiserAssistant!
+    var numQuestions = 0
+    var questions = [[String:Any]]()
+    var correctAnswer = "F"
+    var timer = Timer()
+    var time = 20
+    var nextTime = -1
+    let session1 = URLSession.shared
+    let urls = ["http:www.people.vcu.edu/~ebulut/jsonFiles/quiz1.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz2.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz3.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz4.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz5.json"]
+    var Ataps = 0
+    var Btaps = 0
+    var Ctaps = 0
+    var Dtaps = 0
+    var grey = UIColor()
     
     @IBOutlet weak var Btn_A: UIButton!
     @IBOutlet weak var Btn_B: UIButton!
     @IBOutlet weak var Btn_C: UIButton!
     @IBOutlet weak var Btn_D: UIButton!
-    @IBOutlet weak var Btn_Send: UIButton!
     @IBOutlet weak var Btn_Connect: UIButton!
     //TODO: Populate this with questions
     @IBOutlet weak var Lb_Question: UILabel!
@@ -45,6 +57,11 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         assistant.start()
         session.delegate = self
         browser.delegate = self
+
+        Btn_A.titleLabel?.adjustsFontSizeToFitWidth = true;
+        Btn_B.titleLabel?.adjustsFontSizeToFitWidth = true;
+        Btn_C.titleLabel?.adjustsFontSizeToFitWidth = true;
+        Btn_D.titleLabel?.adjustsFontSizeToFitWidth = true;
     }
     
     // required functions for MCBrowserViewControllerDelegate
@@ -95,7 +112,49 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
             present(browser, animated: true, completion: nil)
     }
 
-    @IBAction func sendChoice(_ sender: UIButton) {
+    func getJson(urlString: String) {
+        var quizurl = URL(string: urlString)
+
+        var task = session1.dataTask(with: quizurl!, completionHandler: { (data, response, error) -> Void in
+
+            do {
+                print("Reading JSON data")
+                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                self.numQuestions = json["numberOfQuestions"] as! Int
+                self.questions = json["questions"] as! [[String : Any]]
+                self.navigationItem.title = json["topic"] as! String
+                let question = self.questions[BuehneWork.questionCount - 1]
+                let questionSentence = question["questionSentence"]
+                self.Lb_Question.text = questionSentence as! String
+                let options = question["options"] as! [String:String]
+                self.Btn_A.setTitle("A)" + options["A"]!, for: .normal)
+                self.Btn_B.setTitle("B)" + options["B"]!, for: .normal)
+                self.Btn_C.setTitle("C)" + options["C"]!, for: .normal)
+                self.Btn_D.setTitle("D)" + options["D"]!, for: .normal)
+                //self.testLabel.text = "Question " + String(BuehneWork.questionCount) + "/" + String(self.numQuestions)
+                self.correctAnswer = question["correctOption"] as! String
+
+                OperationQueue.main.addOperation {
+                    self.doMain()
+                }
+            }
+            catch _{
+                print("Failed")
+                BuehneWork.quiz = 0
+                self.getJson(urlString: self.urls[BuehneWork.quiz])
+            }
+        })
+
+        task.resume()
+        //rtask.cancel()
+    }
+
+    func doMain() {
+        print("Doing main")
+        Lb_Score.text = String(BuehneWork.score)
+    }
+
+    func sendChoice(_ sender: UIButton) {
 //        let choice = //TODO: Add button choice here
 //        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg!)
 //        do{
