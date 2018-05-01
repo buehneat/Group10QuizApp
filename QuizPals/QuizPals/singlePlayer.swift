@@ -18,7 +18,6 @@ class singlePlayer: UIViewController {
     
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
-    var taps = 0;
     var numQuestions = 0
     var questions = [[String:Any]]()
     let session = URLSession.shared
@@ -32,11 +31,19 @@ class singlePlayer: UIViewController {
     var nextTime = -1
     let urls = ["http:www.people.vcu.edu/~ebulut/jsonFiles/quiz1.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz2.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz3.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz4.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz5.json"]
     
+    var Ataps = 0
+    var Btaps = 0
+    var Ctaps = 0
+    var Dtaps = 0
+    
+    var grey = UIColor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //set the time to 40 because 2 threads are going, therefore it is going twice as fast
         
+        grey = answerA.backgroundColor!
         
         answerA.titleLabel?.adjustsFontSizeToFitWidth = true;
         answerB.titleLabel?.adjustsFontSizeToFitWidth = true;
@@ -140,36 +147,76 @@ class singlePlayer: UIViewController {
     }
     
     @IBAction func clickedA(_ sender: Any) {
-        if self.correctAnswer == "A" {
+        setGrey()
+        Btaps = 0
+        Ctaps = 0
+        Dtaps = 0
+        Ataps = Ataps + 1
+        if self.correctAnswer == "A" && Ataps == 2{
             BuehneWork.score = BuehneWork.score + 1
             scoreLabel.text = String(BuehneWork.score)
         }
-        //self.nextQuestion()
-        nextTime = 3
+        if Ataps == 1 {
+            answerA.backgroundColor = UIColor.green
+        }
+        if Ataps == 2{
+            nextTime = 3
+            answerA.backgroundColor = UIColor.blue
+        }
     }
     @IBAction func clickedB(_ sender: Any) {
-        if self.correctAnswer == "B" {
+        setGrey()
+        Ataps = 0
+        Ctaps = 0
+        Dtaps = 0
+        Btaps = Btaps + 1
+        if self.correctAnswer == "B" && Btaps == 2{
             BuehneWork.score = BuehneWork.score + 1
             scoreLabel.text = String(BuehneWork.score)
         }
-        //self.nextQuestion()
-        nextTime = 3
+        if Btaps == 1 {
+            answerB.backgroundColor = UIColor.green
+        }
+        if Btaps == 2{
+            nextTime = 3
+            answerB.backgroundColor = UIColor.blue
+        }
     }
     @IBAction func clickedC(_ sender: Any) {
-        if self.correctAnswer == "C" {
+        setGrey()
+        Btaps = 0
+        Ataps = 0
+        Dtaps = 0
+        Ctaps = Ctaps + 1
+        if self.correctAnswer == "C" && Ctaps == 2{
             BuehneWork.score = BuehneWork.score + 1
             scoreLabel.text = String(BuehneWork.score)
         }
-        //self.nextQuestion()
-        nextTime = 3
+        if Ctaps == 1 {
+            answerC.backgroundColor = UIColor.green
+        }
+        if Ctaps == 2{
+            nextTime = 3
+            answerC.backgroundColor = UIColor.blue
+        }
     }
     @IBAction func clickedD(_ sender: Any) {
-        if self.correctAnswer == "D" {
+        setGrey()
+        Btaps = 0
+        Ctaps = 0
+        Ataps = 0
+        Dtaps = Dtaps + 1
+        if self.correctAnswer == "D" && Dtaps == 2{
             BuehneWork.score = BuehneWork.score + 1
             scoreLabel.text = String(BuehneWork.score)
         }
-        //self.nextQuestion()
-        nextTime = 3
+        if Dtaps == 1 {
+            answerD.backgroundColor = UIColor.green
+        }
+        if Dtaps == 2{
+            nextTime = 3
+            answerD.backgroundColor = UIColor.blue
+        }
     }
     
     func nextQuestion() {
@@ -211,6 +258,13 @@ class singlePlayer: UIViewController {
         BuehneWork.questionCount = 1
         self.loadView()
         self.viewDidLoad()
+    }
+    
+    func setGrey(){
+        answerA.backgroundColor = grey
+        answerB.backgroundColor = grey
+        answerC.backgroundColor = grey
+        answerD.backgroundColor = grey
     }
     
     /*
