@@ -41,8 +41,7 @@ class singlePlayer: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //set the time to 40 because 2 threads are going, therefore it is going twice as fast
+        self.becomeFirstResponder()
         
         grey = answerA.backgroundColor!
         
@@ -51,40 +50,7 @@ class singlePlayer: UIViewController {
         answerC.titleLabel?.adjustsFontSizeToFitWidth = true;
         answerD.titleLabel?.adjustsFontSizeToFitWidth = true;
         
-        // Do any additional setup after loading the view.
-        
-        
-        
         getJson(urlString: urls[BuehneWork.quiz])
-        
-        //var quizurl = URL(string: urls[3])
-        
-        /*let session = URLSession.shared
-        
-        var task = session.dataTask(with: quizurl!, completionHandler: { (data, response, error) -> Void in
-            
-            do {
-                print("Reading JSON data")
-                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
-                numQuestions = json["numberOfQuestions"] as! Int
-                questions = json["questions"] as! [[String : Any]]
-                self.navigationItem.title = json["topic"] as! String
-                let question = questions[BuehneWork.questionCount]
-                let questionSentence = question["questionSentence"]
-                self.questionLabel.text = questionSentence as! String
-                let options = question["options"] as! [String:String]
-                self.answerA.text = "A)" + options["A"]!
-                self.answerB.text = "B)" + options["B"]!
-                self.answerC.text = "C)" + options["C"]!
-                self.answerD.text = "D)" + options["D"]!
-                self.testLabel.text = "Question " + String(BuehneWork.questionCount) + "/" + String(numQuestions)
-            }
-            catch _{
-                print("Failed")
-            }
-        })
-        
-        task.resume()*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -235,6 +201,9 @@ class singlePlayer: UIViewController {
     
     @objc func updateTimer() {
         time = time - 1
+        if time >= 0 && nextTime < 0{
+            timeLabel.text = String(time)
+        }
         
         if nextTime > 0 {
             nextTime = nextTime - 1
@@ -266,6 +235,18 @@ class singlePlayer: UIViewController {
         answerB.backgroundColor = grey
         answerC.backgroundColor = grey
         answerD.backgroundColor = grey
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("Why are you shaking me?")
+        }
     }
     
     /*
