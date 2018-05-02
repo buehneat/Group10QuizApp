@@ -64,7 +64,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
 
-        print("inside didReceiveData")
+        self.Start(self.startQuizButton)
+        
 
         // this needs to be run on the main thread
         DispatchQueue.main.async(execute: {
@@ -94,17 +95,17 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
 
     
     @IBAction func Start(_ sender: Any) {
-        let dataToSend = NSKeyedArchiver.archivedData(withRootObject: true)
-        do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .reliable)}
-        catch _{
-            print("failed")
-        }
-        if gameType.selectedSegmentIndex == 0 {
+        if gameType.selectedSegmentIndex == 0 && self.session.connectedPeers.count == 0{
             let viewController = storyboard?.instantiateViewController(withIdentifier: "single")
             self.navigationController?.pushViewController(viewController!, animated: true)
         }
         else {
             if self.session.connectedPeers.count > 0 && self.session.connectedPeers.count < 4 {
+                let dataToSend = NSKeyedArchiver.archivedData(withRootObject: true)
+                do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .reliable)}
+                catch _{
+                    print("failed")
+                }
                 let viewController = storyboard?.instantiateViewController(withIdentifier: "multi")
                 self.navigationController?.pushViewController(viewController!, animated: true)
             }
