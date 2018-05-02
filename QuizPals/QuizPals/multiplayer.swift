@@ -29,17 +29,22 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     var Ctaps = 0
     var Dtaps = 0
     var grey = UIColor()
+    let motionmanager = CMMotionManager()
+    var gotSelection = false
+    var startPitch = 0.0
+    var startYaw = 0.0
+    var startRoll = 0.0
     
     @IBOutlet weak var Btn_A: UIButton!
     @IBOutlet weak var Btn_B: UIButton!
     @IBOutlet weak var Btn_C: UIButton!
     @IBOutlet weak var Btn_D: UIButton!
     @IBOutlet weak var Btn_Connect: UIButton!
-    //TODO: Populate this with questions
+    @IBOutlet weak var Btn_Restart: UIButton!
     @IBOutlet weak var Lb_Question: UILabel!
-    // This with current score
     @IBOutlet weak var Lb_Score: UILabel!
-    // Labels to show answer choices
+    @IBOutlet weak var Lb_Timer: UILabel!
+    @IBOutlet weak var Lb_Qnum: UILabel!
     @IBOutlet weak var Lb_Player: UILabel!
     @IBOutlet weak var Lb_LeftPlayer: UILabel!
     @IBOutlet weak var Lb_RightPlayer: UILabel!
@@ -131,7 +136,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
                 self.Btn_B.setTitle("B)" + options["B"]!, for: .normal)
                 self.Btn_C.setTitle("C)" + options["C"]!, for: .normal)
                 self.Btn_D.setTitle("D)" + options["D"]!, for: .normal)
-                //self.testLabel.text = "Question " + String(BuehneWork.questionCount) + "/" + String(self.numQuestions)
+                self.Lb_Qnum.text = "Question " + String(BuehneWork.questionCount) + "/" + String(self.numQuestions)
                 self.correctAnswer = question["correctOption"] as! String
 
                 OperationQueue.main.addOperation {
@@ -144,15 +149,273 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
                 self.getJson(urlString: self.urls[BuehneWork.quiz])
             }
         })
-
         task.resume()
-        //rtask.cancel()
     }
 
     func doMain() {
         print("Doing main")
         Lb_Score.text = String(BuehneWork.score)
+
+        self.motionmanager.deviceMotionUpdateInterval = 1.0/60.0
+        self.motionmanager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
+
+        time = 20
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+        //Lb_Timer = Timer.scheduledTimer(timeInterval: 0.05, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
+        Btn_Restart.titleLabel?.adjustsFontSizeToFitWidth = true
+        Btn_Restart.isHidden = true
+        Lb_Score.text = String(BuehneWork.score)
     }
+
+    @IBAction func clickedA(_ sender: Any) {
+        setGrey()
+        Btaps = 0
+        Ctaps = 0
+        Dtaps = 0
+        Ataps = Ataps + 1
+        if self.correctAnswer == "A" && Ataps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
+        }
+        if Ataps == 1 {
+            Btn_A.backgroundColor = UIColor.green
+        }
+        if Ataps == 2{
+            nextTime = 3
+            Btn_A.backgroundColor = UIColor.blue
+        }
+    }
+    @IBAction func clickedB(_ sender: Any) {
+        setGrey()
+        Ataps = 0
+        Ctaps = 0
+        Dtaps = 0
+        Btaps = Btaps + 1
+        if self.correctAnswer == "B" && Btaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
+        }
+        if Btaps == 1 {
+            Btn_B.backgroundColor = UIColor.green
+        }
+        if Btaps == 2{
+            nextTime = 3
+            Btn_B.backgroundColor = UIColor.blue
+        }
+    }
+    @IBAction func clickedC(_ sender: Any) {
+        setGrey()
+        Btaps = 0
+        Ataps = 0
+        Dtaps = 0
+        Ctaps = Ctaps + 1
+        if self.correctAnswer == "C" && Ctaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
+        }
+        if Ctaps == 1 {
+            Btn_C.backgroundColor = UIColor.green
+        }
+        if Ctaps == 2{
+            nextTime = 3
+            Btn_C.backgroundColor = UIColor.blue
+        }
+    }
+    @IBAction func clickedD(_ sender: Any) {
+        setGrey()
+        Btaps = 0
+        Ctaps = 0
+        Ataps = 0
+        Dtaps = Dtaps + 1
+        if self.correctAnswer == "D" && Dtaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
+        }
+        if Dtaps == 1 {
+            Btn_D.backgroundColor = UIColor.green
+        }
+        if Dtaps == 2{
+            nextTime = 3
+            Btn_D.backgroundColor = UIColor.blue
+        }
+    }
+
+    func setGrey(){
+        Btn_A.backgroundColor = grey
+        Btn_B.backgroundColor = grey
+        Btn_C.backgroundColor = grey
+        Btn_D.backgroundColor = grey
+    }
+
+    func nextQuestion() {
+        if BuehneWork.questionCount < numQuestions {
+            BuehneWork.questionCount = BuehneWork.questionCount + 1
+            self.loadView()
+            self.viewDidLoad()
+        }
+        else {
+            Lb_Score.text = "You Win!"
+            Btn_Restart.isHidden = false
+            timer.invalidate()
+        }
+    }
+
+    @objc func updateTimer() {
+        if time == 120 {
+            if let motionData = self.motionmanager.deviceMotion {
+                let attitude = motionData.attitude
+
+                startYaw = attitude.yaw
+                startRoll = attitude.roll
+                startPitch = attitude.pitch
+                print(startYaw)
+            }
+        }
+        time = time - 1
+        if time >= 0 && nextTime < 0{
+            Lb_Timer.text = String(time)
+        }
+
+        if nextTime > 0 {
+            nextTime = nextTime - 1
+            Lb_Question.text = "The correct answer was: " + correctAnswer
+            Btn_A.isUserInteractionEnabled = false
+            Btn_B.isUserInteractionEnabled = false
+            Btn_C.isUserInteractionEnabled = false
+            Btn_D.isUserInteractionEnabled = false
+        }
+        else if nextTime == 0 {
+            nextTime = -1
+            nextQuestion()
+        }
+
+        if time == 0 {
+            nextTime = 3
+        }
+
+    }
+
+    @IBAction func nextQuiz(_ sender: Any) {
+        BuehneWork.quiz = BuehneWork.quiz + 1
+        BuehneWork.questionCount = 1
+        self.loadView()
+        self.viewDidLoad()
+    }
+
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("Shaked")
+            if self.nextTime < 0
+            {
+                while (!gotSelection)
+                {
+                    var selection = Int(arc4random()) % 4
+                    if selection == 0 && Ataps == 0 {
+                        gotSelection = true
+                        self.clickedA(self.Btn_A)
+                    }
+                    if selection == 1 && Btaps == 0 {
+                        gotSelection = true
+                        self.clickedB(self.Btn_B)
+                    }
+                    if selection == 2 && Ctaps == 0 {
+                        gotSelection = true
+                        self.clickedC(self.Btn_C)
+                    }
+                    if selection == 3 && Dtaps == 0 {
+                        gotSelection = true
+                        self.clickedD(self.Btn_D)
+                    }
+                }
+                gotSelection = false
+            }
+
+        }
+    }
+
+    @objc func updateDeviceMotion() {
+        if let motionData = self.motionmanager.deviceMotion {
+            let attitude = motionData.attitude
+
+            let gravity = motionData.gravity
+            let rotation = motionData.rotationRate
+
+
+            if Ataps == 1 || Btaps == 1 || Ctaps == 1 || Dtaps == 1 {
+                if (attitude.roll) >= 1.0{
+                    if Ataps == 1 {
+                        self.clickedB(self.Btn_B)
+                        print("Rolled Right from A")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Ctaps == 1 {
+                        self.clickedD(self.Btn_D)
+                        print("Rolled Right from C")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.roll) <= -1.0{
+                    if Btaps == 1 {
+                        self.clickedA(self.Btn_A)
+                        print("Rolled left from B")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedC(self.Btn_C)
+                        print("Rolled left from D")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.pitch) >= 1.0{
+                    if Ataps == 1 {
+                        self.clickedC(self.Btn_C)
+                        print("Pitch down from A")
+                        print(startPitch)
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Btaps == 1 {
+                        self.clickedD(self.Btn_D)
+                        print("Pitched down from B")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.pitch) <= -1.0{
+                    if Ctaps == 1 {
+                        self.clickedA(self.Btn_A)
+                        print("Pitched up from C")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedB(self.Btn_B)
+                        print("Pitched up from D")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.yaw - startYaw) >= 1.0 || (attitude.yaw - startYaw) <= -1.0 {
+                    print(attitude.yaw - startYaw)
+                    if Ataps == 1 {
+                        self.clickedA(self.Btn_A)
+                        print("A: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Btaps == 1 {
+                        self.clickedB(self.Btn_B)
+                        print("B: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Ctaps == 1 {
+                        self.clickedC(self.Btn_C)
+                        print("C: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedD(self.Btn_D)
+                        print("D: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+            }
+
+        }
+    }
+
+    // Multiplayer portion for sending info
 
     func sendChoice(_ sender: UIButton) {
 //        let choice = //TODO: Add button choice here
@@ -163,6 +426,21 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 //        catch let err {
 //            //print("Error in sending data \(err)")
 //        }
-//        updateChatView(newText: msg!, id: peerID)
+//        updateView(newText: msg!, id: peerID)
+    }
+
+    func updateView(newText: String, id: MCPeerID){
+
+//        let currentText = chatWindow.text
+//        var addThisText = ""
+//
+//        if(id == peerID){
+//            addThisText = "Me: " + newText + "\n"
+//        }
+//        else
+//        {
+//            addThisText = "\(id.displayName): \(newText)\n"
+//        }
+//        chatWindow.text = currentText! + addThisText
     }
 }
