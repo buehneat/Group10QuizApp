@@ -23,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiplayer.swift" pinned="false" current-in-tab="false">
+      <file leaf-file-name="multiplayer.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/QuizPals/multiplayer.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="603">
+              <caret line="440" column="43" lean-forward="false" selection-start-line="440" selection-start-column="43" selection-end-line="440" selection-end-column="43" />
               <folding>
                 <element signature="e#136#148#0" expanded="true" />
               </folding>
@@ -35,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewController.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QuizPals/ViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="87" column="54" lean-forward="true" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+            <state relative-caret-position="685">
+              <caret line="87" column="54" lean-forward="false" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
               <folding>
                 <element signature="e#139#151#0" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <list>
         <option value="$PROJECT_DIR$/QuizPals/MPCManager.swift" />
         <option value="$PROJECT_DIR$/QuizPals/singlePlayer.swift" />
-        <option value="$PROJECT_DIR$/QuizPals/multiplayer.swift" />
         <option value="$PROJECT_DIR$/QuizPals/ViewController.swift" />
+        <option value="$PROJECT_DIR$/QuizPals/multiplayer.swift" />
       </list>
     </option>
   </component>
@@ -145,7 +145,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4910000" />
+    <option name="totallyTimeSpent" value="5510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -311,22 +311,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QuizPals/multiplayer.swift">
+    <entry file="file://$PROJECT_DIR$/QuizPals/ViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="685">
+          <caret line="87" column="54" lean-forward="false" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
           <folding>
-            <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#139#151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QuizPals/ViewController.swift">
+    <entry file="file://$PROJECT_DIR$/QuizPals/multiplayer.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="87" column="54" lean-forward="true" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+        <state relative-caret-position="603">
+          <caret line="440" column="43" lean-forward="false" selection-start-line="440" selection-start-column="43" selection-end-line="440" selection-end-column="43" />
           <folding>
-            <element signature="e#139#151#0" expanded="true" />
+            <element signature="e#136#148#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -439,7 +439,6 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     }
 
     // Multiplayer portion for sending info
-
     func sendChoice() {
         let choice = answerText
         let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: answerText)
@@ -453,6 +452,6 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     }
 
     func updateView(newText: String, id: MCPeerID){
-        let currentText = Lb_Player.text
+        Lb_Player.text = newText
     }
 }
