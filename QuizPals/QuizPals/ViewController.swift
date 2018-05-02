@@ -94,6 +94,11 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
 
     
     @IBAction func Start(_ sender: Any) {
+        let dataToSend = NSKeyedArchiver.archivedData(withRootObject: true)
+        do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .reliable)}
+        catch _{
+            print("failed")
+        }
         if gameType.selectedSegmentIndex == 0 {
             let viewController = storyboard?.instantiateViewController(withIdentifier: "single")
             self.navigationController?.pushViewController(viewController!, animated: true)
