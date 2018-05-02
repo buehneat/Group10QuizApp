@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 class singlePlayer: UIViewController {
     @IBOutlet weak var testLabel: UILabel!
@@ -28,6 +29,7 @@ class singlePlayer: UIViewController {
     var choiceC = "Label"
     var choiceD = "Label"
     var timer = Timer()
+    var motionTimer = Timer()
     var time = 20
     var nextTime = -1
     let urls = ["http:www.people.vcu.edu/~ebulut/jsonFiles/quiz1.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz2.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz3.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz4.json", "http:www.people.vcu.edu/~ebulut/jsonFiles/quiz5.json"]
@@ -38,6 +40,14 @@ class singlePlayer: UIViewController {
     var Dtaps = 0
     
     var grey = UIColor()
+    
+    let motionmanager = CMMotionManager()
+    
+    var gotSelection = false
+    
+    var startPitch = 0.0
+    var startYaw = 0.0
+    var startRoll = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,11 +116,17 @@ class singlePlayer: UIViewController {
         self.answerC.setTitle(choiceC, for: UIControlState.normal)
         self.answerD.setTitle(choiceD, for: UIControlState.normal)
         
+        self.motionmanager.deviceMotionUpdateInterval = 1.0/60.0
+        self.motionmanager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
+        
         time = 20
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+        motionTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
         restartButton.titleLabel?.adjustsFontSizeToFitWidth = true
         restartButton.isHidden = true
         scoreLabel.text = String(BuehneWork.score)
+        
+        
     }
     
     @IBAction func clickedA(_ sender: Any) {
@@ -200,6 +216,16 @@ class singlePlayer: UIViewController {
     }
     
     @objc func updateTimer() {
+        if time == 120 {
+            if let motionData = self.motionmanager.deviceMotion {
+                let attitude = motionData.attitude
+                
+                startYaw = attitude.yaw
+                startRoll = attitude.roll
+                startPitch = attitude.pitch
+                print(startYaw)
+            }
+        }
         time = time - 1
         if time >= 0 && nextTime < 0{
             timeLabel.text = String(time)
@@ -219,8 +245,9 @@ class singlePlayer: UIViewController {
         }
         
         if time == 0 {
-            nextTime = 6
+            nextTime = 3
         }
+        
     }
     
     @IBAction func nextQuiz(_ sender: Any) {
@@ -245,7 +272,114 @@ class singlePlayer: UIViewController {
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            print("Why are you shaking me?")
+            print("Shaked")
+            if self.nextTime < 0
+            {
+                while (!gotSelection)
+                {
+                    var selection = Int(arc4random()) % 4
+                    if selection == 0 && Ataps == 0 {
+                        gotSelection = true
+                        self.clickedA(self.answerA)
+                    }
+                    if selection == 1 && Btaps == 0 {
+                        gotSelection = true
+                        self.clickedB(self.answerB)
+                    }
+                    if selection == 2 && Ctaps == 0 {
+                        gotSelection = true
+                        self.clickedC(self.answerC)
+                    }
+                    if selection == 3 && Dtaps == 0 {
+                        gotSelection = true
+                        self.clickedD(self.answerD)
+                    }
+                }
+                gotSelection = false
+            }
+            
+        }
+    }
+    
+    @objc func updateDeviceMotion() {
+        if let motionData = self.motionmanager.deviceMotion {
+            let attitude = motionData.attitude
+            
+            let gravity = motionData.gravity
+            let rotation = motionData.rotationRate
+            
+            
+            if Ataps == 1 || Btaps == 1 || Ctaps == 1 || Dtaps == 1 {
+                if (attitude.roll) >= 1.0{
+                    if Ataps == 1 {
+                        self.clickedB(self.answerB)
+                        print("Rolled Right from A")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Ctaps == 1 {
+                        self.clickedD(self.answerD)
+                        print("Rolled Right from C")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.roll) <= -1.0{
+                    if Btaps == 1 {
+                        self.clickedA(self.answerA)
+                        print("Rolled left from B")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedC(self.answerC)
+                        print("Rolled left from D")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.pitch) >= 1.0{
+                    if Ataps == 1 {
+                        self.clickedC(self.answerC)
+                        print("Pitch down from A")
+                        print(startPitch)
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Btaps == 1 {
+                        self.clickedD(self.answerD)
+                        print("Pitched down from B")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.pitch) <= -1.0{
+                    if Ctaps == 1 {
+                        self.clickedA(self.answerA)
+                        print("Pitched up from C")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedB(self.answerB)
+                        print("Pitched up from D")
+                        print("Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+                if (attitude.yaw - startYaw) >= 1.0 || (attitude.yaw - startYaw) <= -1.0 {
+                    print(attitude.yaw - startYaw)
+                    if Ataps == 1 {
+                        self.clickedA(self.answerA)
+                        print("A: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Btaps == 1 {
+                        self.clickedB(self.answerB)
+                        print("B: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Ctaps == 1 {
+                        self.clickedC(self.answerC)
+                        print("C: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                    if Dtaps == 1 {
+                        self.clickedD(self.answerD)
+                        print("D: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+                    }
+                }
+            }
+            
         }
     }
     
