@@ -19,6 +19,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     var browser: MCBrowserViewController!
     var assistant: MCAdvertiserAssistant!
 
+    var receivedValue = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +65,9 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
 
-        self.Start(self.startQuizButton)
+        print("Starting peer")
+        receivedValue = true
+        //self.Start(self.startQuizButton)
         
 
         // this needs to be run on the main thread
@@ -101,10 +104,12 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         }
         else {
             if self.session.connectedPeers.count > 0 && self.session.connectedPeers.count < 4 {
+                if !receivedValue {
                 let dataToSend = NSKeyedArchiver.archivedData(withRootObject: true)
-                do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .reliable)}
+                do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)}
                 catch _{
                     print("failed")
+                }
                 }
                 let viewController = storyboard?.instantiateViewController(withIdentifier: "multi")
                 self.navigationController?.pushViewController(viewController!, animated: true)
