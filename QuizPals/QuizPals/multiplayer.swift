@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 import MultipeerConnectivity
 
-class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate, UINavigationControllerDelegate {
 
     var session: MCSession!
     var peerID: MCPeerID!
@@ -68,26 +68,32 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Btn_B.titleLabel?.adjustsFontSizeToFitWidth = true;
         Btn_C.titleLabel?.adjustsFontSizeToFitWidth = true;
         Btn_D.titleLabel?.adjustsFontSizeToFitWidth = true;
+
+        getJson(urlString: urls[BuehneWork.quiz])
+        Ataps = 0
+        Btaps = 0
+        Ctaps = 0
+        Dtaps = 0
     }
-    
+
     // required functions for MCBrowserViewControllerDelegate
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         // Called when the browser view controller is dismissed
         dismiss(animated: true, completion: nil)
     }
-    
+
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         // Called when the browser view controller is cancelled
         dismiss(animated: true, completion: nil)
     }
-    
+
     // required functions for MCSessionDelegate
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {}
-    
+
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        
+
         print("inside didReceiveData")
-        
+
         // this needs to be run on the main thread
         DispatchQueue.main.async(execute: {
 //            if let receivedChoice = NSKeyedUnarchiver.unarchiveObject(with: data) as? String{
@@ -95,11 +101,11 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 //            }
         })
     }
-    
+
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {}
-    
+
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
-    
+
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         // Called when a connected peer changes state (for example, goes offline)
         switch state {
