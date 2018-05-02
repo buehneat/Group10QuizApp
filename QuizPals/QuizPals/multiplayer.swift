@@ -34,6 +34,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     var startPitch = 0.0
     var startYaw = 0.0
     var startRoll = 0.0
+    var answerText = " "
     
     @IBOutlet weak var Btn_A: UIButton!
     @IBOutlet weak var Btn_B: UIButton!
@@ -173,16 +174,18 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Ctaps = 0
         Dtaps = 0
         Ataps = Ataps + 1
-        if self.correctAnswer == "A" && Ataps == 2{
-            BuehneWork.score = BuehneWork.score + 1
-            Lb_Score.text = String(BuehneWork.score)
-        }
         if Ataps == 1 {
             Btn_A.backgroundColor = UIColor.green
         }
         if Ataps == 2{
             nextTime = 3
             Btn_A.backgroundColor = UIColor.blue
+            answerText = "A"
+            sendChoice()
+        }
+        if self.correctAnswer == "A" && Ataps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
         }
     }
     @IBAction func clickedB(_ sender: Any) {
@@ -191,16 +194,18 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Ctaps = 0
         Dtaps = 0
         Btaps = Btaps + 1
-        if self.correctAnswer == "B" && Btaps == 2{
-            BuehneWork.score = BuehneWork.score + 1
-            Lb_Score.text = String(BuehneWork.score)
-        }
         if Btaps == 1 {
             Btn_B.backgroundColor = UIColor.green
         }
         if Btaps == 2{
             nextTime = 3
             Btn_B.backgroundColor = UIColor.blue
+            answerText="B"
+            sendChoice()
+        }
+        if self.correctAnswer == "B" && Btaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
         }
     }
     @IBAction func clickedC(_ sender: Any) {
@@ -209,16 +214,18 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Ataps = 0
         Dtaps = 0
         Ctaps = Ctaps + 1
-        if self.correctAnswer == "C" && Ctaps == 2{
-            BuehneWork.score = BuehneWork.score + 1
-            Lb_Score.text = String(BuehneWork.score)
-        }
         if Ctaps == 1 {
             Btn_C.backgroundColor = UIColor.green
         }
         if Ctaps == 2{
             nextTime = 3
             Btn_C.backgroundColor = UIColor.blue
+            answerText="C"
+            sendChoice()
+        }
+        if self.correctAnswer == "C" && Ctaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
         }
     }
     @IBAction func clickedD(_ sender: Any) {
@@ -227,16 +234,18 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Ctaps = 0
         Ataps = 0
         Dtaps = Dtaps + 1
-        if self.correctAnswer == "D" && Dtaps == 2{
-            BuehneWork.score = BuehneWork.score + 1
-            Lb_Score.text = String(BuehneWork.score)
-        }
         if Dtaps == 1 {
             Btn_D.backgroundColor = UIColor.green
         }
         if Dtaps == 2{
             nextTime = 3
             Btn_D.backgroundColor = UIColor.blue
+            answerText="D"
+            sendChoice()
+        }
+        if self.correctAnswer == "D" && Dtaps == 2{
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
         }
     }
 
@@ -395,18 +404,26 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
                     print(attitude.yaw - startYaw)
                     if Ataps == 1 {
                         self.clickedA(self.Btn_A)
+                        answerText = "A"
+                        sendChoice()
                         print("A: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
                     }
                     if Btaps == 1 {
                         self.clickedB(self.Btn_B)
+                        answerText = "B"
+                        sendChoice()
                         print("B: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
                     }
                     if Ctaps == 1 {
                         self.clickedC(self.Btn_C)
+                        answerText = "C"
+                        sendChoice()
                         print("C: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
                     }
                     if Dtaps == 1 {
                         self.clickedD(self.Btn_D)
+                        answerText = "D"
+                        sendChoice()
                         print("D: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
                     }
                 }
@@ -417,30 +434,19 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 
     // Multiplayer portion for sending info
 
-    func sendChoice(_ sender: UIButton) {
-//        let choice = //TODO: Add button choice here
-//        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg!)
-//        do{
-//            try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
-//        }
-//        catch let err {
-//            //print("Error in sending data \(err)")
-//        }
-//        updateView(newText: msg!, id: peerID)
+    func sendChoice() {
+        let choice = answerText
+        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: answerText)
+        do{
+            try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
+        }
+        catch let err {
+            //print("Error in sending data \(err)")
+        }
+        updateView(newText: answerText, id: peerID)
     }
 
     func updateView(newText: String, id: MCPeerID){
-
-//        let currentText = chatWindow.text
-//        var addThisText = ""
-//
-//        if(id == peerID){
-//            addThisText = "Me: " + newText + "\n"
-//        }
-//        else
-//        {
-//            addThisText = "\(id.displayName): \(newText)\n"
-//        }
-//        chatWindow.text = currentText! + addThisText
+        let currentText = Lb_Player.text
     }
 }
