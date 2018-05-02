@@ -61,6 +61,10 @@ class singlePlayer: UIViewController {
         answerD.titleLabel?.adjustsFontSizeToFitWidth = true;
         
         getJson(urlString: urls[BuehneWork.quiz])
+        Ataps = 0
+        Btaps = 0
+        Ctaps = 0
+        Dtaps = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,16 +121,17 @@ class singlePlayer: UIViewController {
         self.answerD.setTitle(choiceD, for: UIControlState.normal)
         
         self.motionmanager.deviceMotionUpdateInterval = 1.0/60.0
+        self.motionmanager.accelerometerUpdateInterval = 1.0/10
         self.motionmanager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
         
-        time = 20
+        time = 120
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-        motionTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
+        motionTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
         restartButton.titleLabel?.adjustsFontSizeToFitWidth = true
         restartButton.isHidden = true
         scoreLabel.text = String(BuehneWork.score)
         
-        
+        self.motionmanager.startAccelerometerUpdates()
     }
     
     @IBAction func clickedA(_ sender: Any) {
@@ -308,7 +313,6 @@ class singlePlayer: UIViewController {
             let gravity = motionData.gravity
             let rotation = motionData.rotationRate
             
-            
             if Ataps == 1 || Btaps == 1 || Ctaps == 1 || Dtaps == 1 {
                 if (attitude.roll) >= 1.0{
                     if Ataps == 1 {
@@ -378,6 +382,25 @@ class singlePlayer: UIViewController {
                         print("D: Pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
                     }
                 }
+                let zForce = self.motionmanager.accelerometerData?.acceleration.z
+                    if zForce! < -5.5{
+                        if Ataps == 1 {
+                            self.clickedA(self.answerA)
+                            print("A: \(zForce)")
+                        }
+                        if Btaps == 1 {
+                            self.clickedB(self.answerB)
+                            print("A: \(zForce)")
+                        }
+                        if Ctaps == 1 {
+                            self.clickedC(self.answerC)
+                            print("A: \(zForce)")
+                        }
+                        if Dtaps == 1 {
+                            self.clickedD(self.answerD)
+                            print("A: \(zForce)")
+                        }
+                    }
             }
             
         }
