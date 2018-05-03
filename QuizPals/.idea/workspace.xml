@@ -16,8 +16,8 @@
       <file leaf-file-name="singlePlayer.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QuizPals/singlePlayer.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="317">
+              <caret line="148" column="9" lean-forward="false" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -26,10 +26,17 @@
       <file leaf-file-name="multiplayer.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/QuizPals/multiplayer.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="440" column="43" lean-forward="false" selection-start-line="440" selection-start-column="43" selection-end-line="440" selection-end-column="43" />
+            <state relative-caret-position="2366">
+              <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
               <folding>
                 <element signature="e#136#148#0" expanded="true" />
+                <element signature="e#7787#8341#0" expanded="false" />
+                <element signature="e#8346#8900#0" expanded="false" />
+                <element signature="e#8905#9459#0" expanded="false" />
+                <element signature="e#9640#9993#0" expanded="false" />
+                <element signature="e#9999#10975#0" expanded="false" />
+                <element signature="e#11179#12245#0" expanded="false" />
+                <element signature="e#12251#16327#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -38,8 +45,8 @@
       <file leaf-file-name="ViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QuizPals/ViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="685">
-              <caret line="87" column="54" lean-forward="false" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+            <state relative-caret-position="745">
+              <caret line="91" column="54" lean-forward="false" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
               <folding>
                 <element signature="e#139#151#0" expanded="true" />
               </folding>
@@ -145,7 +152,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5510000" />
+    <option name="totallyTimeSpent" value="7344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -186,6 +193,13 @@
           <caret line="186" column="17" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -204,6 +218,13 @@
           <caret line="108" column="5" lean-forward="true" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -222,6 +243,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -247,6 +275,13 @@
           <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -257,6 +292,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -282,6 +324,13 @@
           <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -292,6 +341,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -300,33 +356,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuizPals/singlePlayer.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/QuizPals/ViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="685">
-          <caret line="87" column="54" lean-forward="false" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+        <state relative-caret-position="745">
+          <caret line="91" column="54" lean-forward="false" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
           <folding>
             <element signature="e#139#151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/QuizPals/singlePlayer.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="148" column="9" lean-forward="false" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/QuizPals/multiplayer.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="440" column="43" lean-forward="false" selection-start-line="440" selection-start-column="43" selection-end-line="440" selection-end-column="43" />
+        <state relative-caret-position="2366">
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
             <element signature="e#136#148#0" expanded="true" />
+            <element signature="e#7787#8341#0" expanded="false" />
+            <element signature="e#8346#8900#0" expanded="false" />
+            <element signature="e#8905#9459#0" expanded="false" />
+            <element signature="e#9640#9993#0" expanded="false" />
+            <element signature="e#9999#10975#0" expanded="false" />
+            <element signature="e#11179#12245#0" expanded="false" />
+            <element signature="e#12251#16327#0" expanded="false" />
           </folding>
         </state>
       </provider>

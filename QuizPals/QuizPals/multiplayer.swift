@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 import MultipeerConnectivity
 
-class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate, UINavigationControllerDelegate {
+class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate {
 
     var session: MCSession!
     var peerID: MCPeerID!
@@ -175,23 +175,27 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     }
 
     @IBAction func clickedA(_ sender: Any) {
+        print("clicked")
         setGrey()
         Btaps = 0
         Ctaps = 0
         Dtaps = 0
         Ataps = Ataps + 1
+        if self.correctAnswer == "A" && Ataps == 2{
+            print("before a tap")
+            BuehneWork.score = BuehneWork.score + 1
+            Lb_Score.text = String(BuehneWork.score)
+        }
         if Ataps == 1 {
+            print("whent to if atap")
             Btn_A.backgroundColor = UIColor.green
         }
         if Ataps == 2{
+            print("2 click")
             nextTime = 3
             Btn_A.backgroundColor = UIColor.blue
             answerText = "A"
-            sendChoice()
-        }
-        if self.correctAnswer == "A" && Ataps == 2{
-            BuehneWork.score = BuehneWork.score + 1
-            Lb_Score.text = String(BuehneWork.score)
+            updateView(newText: answerText, id: peerID)
         }
     }
     @IBAction func clickedB(_ sender: Any) {
@@ -310,12 +314,12 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 
     }
 
-    @IBAction func nextQuiz(_ sender: Any) {
-        BuehneWork.quiz = BuehneWork.quiz + 1
-        BuehneWork.questionCount = 1
-        self.loadView()
-        self.viewDidLoad()
-    }
+//    @IBAction func nextQuiz(_ sender: Any) {
+//        BuehneWork.quiz = BuehneWork.quiz + 1
+//        BuehneWork.questionCount = 1
+//        self.loadView()
+//        self.viewDidLoad()
+//    }
 
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
@@ -440,7 +444,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 
     // Multiplayer portion for sending info
     func sendChoice() {
-        let choice = answerText
+        var choice = answerText
         let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: answerText)
         do{
             try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
