@@ -20,6 +20,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     var questions = [[String:Any]]()
     var correctAnswer = "F"
     var timer = Timer()
+    var Motiontimer = Timer()
     var time = 20
     var nextTime = -1
     let session1 = URLSession.shared
@@ -50,7 +51,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     @IBOutlet weak var Lb_LeftPlayer: UILabel!
     @IBOutlet weak var Lb_RightPlayer: UILabel!
     @IBOutlet weak var Lb_TopPlayer: UILabel!
-    
+    var playerCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,8 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         Btn_C.titleLabel?.adjustsFontSizeToFitWidth = true;
         Btn_D.titleLabel?.adjustsFontSizeToFitWidth = true;
 
+        grey = Btn_A.backgroundColor!
+        
         getJson(urlString: urls[BuehneWork.quiz])
         Ataps = 0
         Btaps = 0
@@ -93,6 +96,20 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
 
         print("inside didReceiveData")
+        
+        let received = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+        
+        if playerCounter == 0 {
+            self.Lb_LeftPlayer.text = received
+        }
+        if playerCounter == 1 {
+            self.Lb_TopPlayer.text = received
+        }
+        if playerCounter == 2 {
+            self.Lb_RightPlayer.text = received
+        }
+        
+        playerCounter = playerCounter + 1
 
         // this needs to be run on the main thread
         DispatchQueue.main.async(execute: {
@@ -168,7 +185,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
 
         time = 20
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-        //Lb_Timer = Timer.scheduledTimer(timeInterval: 0.05, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
+        Motiontimer = Timer.scheduledTimer(timeInterval: 0.05, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
         Btn_Restart.titleLabel?.adjustsFontSizeToFitWidth = true
         Btn_Restart.isHidden = true
         Lb_Score.text = String(BuehneWork.score)
@@ -192,7 +209,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
         }
         if Ataps == 2{
             print("2 click")
-            nextTime = 3
+            //nextTime = 3
             Btn_A.backgroundColor = UIColor.blue
             answerText = "A"
             updateView(newText: answerText, id: peerID)
@@ -208,7 +225,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
             Btn_B.backgroundColor = UIColor.green
         }
         if Btaps == 2{
-            nextTime = 3
+            //nextTime = 3
             Btn_B.backgroundColor = UIColor.blue
             answerText="B"
             sendChoice()
@@ -228,7 +245,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
             Btn_C.backgroundColor = UIColor.green
         }
         if Ctaps == 2{
-            nextTime = 3
+            //nextTime = 3
             Btn_C.backgroundColor = UIColor.blue
             answerText="C"
             sendChoice()
@@ -248,7 +265,7 @@ class multiplayer: UIViewController, MCBrowserViewControllerDelegate, MCSessionD
             Btn_D.backgroundColor = UIColor.green
         }
         if Dtaps == 2{
-            nextTime = 3
+            //nextTime = 3
             Btn_D.backgroundColor = UIColor.blue
             answerText="D"
             sendChoice()

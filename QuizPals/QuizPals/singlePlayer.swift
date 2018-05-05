@@ -124,7 +124,7 @@ class singlePlayer: UIViewController {
         self.motionmanager.accelerometerUpdateInterval = 1.0/10
         self.motionmanager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
         
-        time = 120
+        time = 20
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
         motionTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self,   selector: (#selector(updateDeviceMotion)), userInfo: nil, repeats: true)
         restartButton.titleLabel?.adjustsFontSizeToFitWidth = true

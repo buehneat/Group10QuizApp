@@ -67,7 +67,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
 
         print("Starting peer")
         receivedValue = true
-        //self.Start(self.startQuizButton)
+        self.Start(self.startQuizButton)
         
 
         // this needs to be run on the main thread
@@ -106,13 +106,24 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
             if self.session.connectedPeers.count > 0 && self.session.connectedPeers.count < 4 {
                 if !receivedValue {
                 let dataToSend = NSKeyedArchiver.archivedData(withRootObject: true)
-                do{ try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)}
+                do{
+                    try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
+                    self.startQuizButton.isUserInteractionEnabled = false
+                    sleep(10)
+                }
                 catch _{
                     print("failed")
                 }
                 }
                 let viewController = storyboard?.instantiateViewController(withIdentifier: "multi")
                 self.navigationController?.pushViewController(viewController!, animated: true)
+            }
+            else {
+                let alertController = UIAlertController(title: "Error", message:
+                    "Connected peers needs to be between 1 and 3", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Understood", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
