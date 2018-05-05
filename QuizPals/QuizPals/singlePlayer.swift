@@ -221,7 +221,7 @@ class singlePlayer: UIViewController {
     }
     
     @objc func updateTimer() {
-        if time == 120 {
+        if time == 20 {
             if let motionData = self.motionmanager.deviceMotion {
                 let attitude = motionData.attitude
                 
